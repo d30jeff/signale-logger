@@ -6,7 +6,7 @@ const chalk = require('chalk');
 const moment = require('moment-timezone');
 const figures = require('figures');
 const pkgConf = require('pkg-conf');
-const pkg = require('./../package.json');
+const pkg = require('./../package');
 const defaultTypes = require('./types');
 
 const {green, grey, red, underline, yellow} = chalk;
@@ -181,7 +181,7 @@ class Signale {
     let safeMessage = message;
 
     _secrets.forEach(secret => {
-      safeMessage = safeMessage.replace(new RegExp(secret, 'g'), '[secure]');
+      safeMessage = safeMessage.replaceAll(secret, '[secure]');
     });
 
     return safeMessage;
